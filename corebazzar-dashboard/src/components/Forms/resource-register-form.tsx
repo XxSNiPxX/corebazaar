@@ -12,275 +12,275 @@ import { AlertCircle, CheckCircle2 } from "lucide-react";
 import { Alert, AlertDescription } from "~/components/TypescriptUI/alert";
 
 // Smart Contract Details
-const CONTRACT_ADDRESS = "0x1EB42a77f2c9394025c54F5922A7E9e6F28Ce0cd"
+const CONTRACT_ADDRESS = "0xd6b6B08BDB261fA8aBF785CeE513c5CA17592994"
 const CONTRACT_ABI = [
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "tradeID",
-          "type": "uint256"
-        },
-        {
-          "indexed": false,
-          "internalType": "address",
-          "name": "tradeContract",
-          "type": "address"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "serviceFeePercentage",
-          "type": "uint256"
-        }
-      ],
-      "name": "GameTradeCreated",
-      "type": "event"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "name": "allTrades",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "_gameServerPubKey",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "_serviceFeePercentage",
-          "type": "uint256"
-        }
-      ],
-      "name": "createGameTrade",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "getAllGameTradeDetails",
-      "outputs": [
-        {
-          "components": [
-            {
-              "internalType": "uint256",
-              "name": "tradeID",
-              "type": "uint256"
-            },
-            {
-              "internalType": "address",
-              "name": "gameServerPubKey",
-              "type": "address"
-            },
-            {
-              "internalType": "address",
-              "name": "gameDeveloper",
-              "type": "address"
-            },
-            {
-              "internalType": "address",
-              "name": "tradeContract",
-              "type": "address"
-            },
-            {
-              "internalType": "uint256",
-              "name": "serviceFeePercentage",
-              "type": "uint256"
-            },
-            {
-              "internalType": "bool",
-              "name": "exists",
-              "type": "bool"
-            }
-          ],
-          "internalType": "struct TradeFactory.TradeInfo[]",
-          "name": "",
-          "type": "tuple[]"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "getAllGameTrades",
-      "outputs": [
-        {
-          "internalType": "address[]",
-          "name": "",
-          "type": "address[]"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "_tradeID",
-          "type": "uint256"
-        }
-      ],
-      "name": "getGameTradeByID",
-      "outputs": [
-        {
-          "components": [
-            {
-              "internalType": "uint256",
-              "name": "tradeID",
-              "type": "uint256"
-            },
-            {
-              "internalType": "address",
-              "name": "gameServerPubKey",
-              "type": "address"
-            },
-            {
-              "internalType": "address",
-              "name": "gameDeveloper",
-              "type": "address"
-            },
-            {
-              "internalType": "address",
-              "name": "tradeContract",
-              "type": "address"
-            },
-            {
-              "internalType": "uint256",
-              "name": "serviceFeePercentage",
-              "type": "uint256"
-            },
-            {
-              "internalType": "bool",
-              "name": "exists",
-              "type": "bool"
-            }
-          ],
-          "internalType": "struct TradeFactory.TradeInfo",
-          "name": "",
-          "type": "tuple"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "_creator",
-          "type": "address"
-        }
-      ],
-      "name": "getGameTradesByCreator",
-      "outputs": [
-        {
-          "internalType": "address[]",
-          "name": "",
-          "type": "address[]"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "_tradeID",
-          "type": "uint256"
-        }
-      ],
-      "name": "getServiceFeePercentage",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "tradeCounter",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "name": "trades",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "tradeID",
-          "type": "uint256"
-        },
-        {
-          "internalType": "address",
-          "name": "gameServerPubKey",
-          "type": "address"
-        },
-        {
-          "internalType": "address",
-          "name": "gameDeveloper",
-          "type": "address"
-        },
-        {
-          "internalType": "address",
-          "name": "tradeContract",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "serviceFeePercentage",
-          "type": "uint256"
-        },
-        {
-          "internalType": "bool",
-          "name": "exists",
-          "type": "bool"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    }
-  ]
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "tradeID",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "tradeContract",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "serviceFeePercentage",
+        "type": "uint256"
+      }
+    ],
+    "name": "GameTradeCreated",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "allTrades",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_gameServerPubKey",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_serviceFeePercentage",
+        "type": "uint256"
+      }
+    ],
+    "name": "createGameTrade",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getAllGameTradeDetails",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "tradeID",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "gameServerPubKey",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "gameDeveloper",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "tradeContract",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "serviceFeePercentage",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "exists",
+            "type": "bool"
+          }
+        ],
+        "internalType": "struct TradeFactory.TradeInfo[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getAllGameTrades",
+    "outputs": [
+      {
+        "internalType": "address[]",
+        "name": "",
+        "type": "address[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_tradeID",
+        "type": "uint256"
+      }
+    ],
+    "name": "getGameTradeByID",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "tradeID",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "gameServerPubKey",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "gameDeveloper",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "tradeContract",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "serviceFeePercentage",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "exists",
+            "type": "bool"
+          }
+        ],
+        "internalType": "struct TradeFactory.TradeInfo",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_creator",
+        "type": "address"
+      }
+    ],
+    "name": "getGameTradesByCreator",
+    "outputs": [
+      {
+        "internalType": "address[]",
+        "name": "",
+        "type": "address[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_tradeID",
+        "type": "uint256"
+      }
+    ],
+    "name": "getServiceFeePercentage",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "tradeCounter",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "trades",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "tradeID",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "gameServerPubKey",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "gameDeveloper",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "tradeContract",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "serviceFeePercentage",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bool",
+        "name": "exists",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
+]
 export function ResourceRegistrationForm() {
   const [resourceID, setResourceID] = useState("");
   const [resourceName, setResourceName] = useState("");
@@ -318,262 +318,761 @@ export function ResourceRegistrationForm() {
 
       const GAME_TRADE_CONTRACT=tradeInfo[tradeInfo.length-1]
       const GAME_TRADE_ABI=[
-    {
-      "inputs": [
         {
-          "internalType": "address",
-          "name": "_gameServerPubKey",
-          "type": "address"
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "_gameServerPubKey",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "_creator",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "_serviceFeePercentage",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "constructor"
         },
         {
-          "internalType": "address",
-          "name": "_creator",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "nonpayable",
-      "type": "constructor"
-    },
-    {
-      "inputs": [],
-      "name": "ECDSAInvalidSignature",
-      "type": "error"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "length",
-          "type": "uint256"
-        }
-      ],
-      "name": "ECDSAInvalidSignatureLength",
-      "type": "error"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "bytes32",
-          "name": "s",
-          "type": "bytes32"
-        }
-      ],
-      "name": "ECDSAInvalidSignatureS",
-      "type": "error"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "string",
-          "name": "resourceID",
-          "type": "string"
+          "inputs": [],
+          "name": "ECDSAInvalidSignature",
+          "type": "error"
         },
         {
-          "indexed": false,
-          "internalType": "string",
-          "name": "resourceName",
-          "type": "string"
-        }
-      ],
-      "name": "ResourceRegistered",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "tradeID",
-          "type": "uint256"
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "length",
+              "type": "uint256"
+            }
+          ],
+          "name": "ECDSAInvalidSignatureLength",
+          "type": "error"
         },
         {
-          "indexed": false,
-          "internalType": "address",
-          "name": "seller",
-          "type": "address"
+          "inputs": [
+            {
+              "internalType": "bytes32",
+              "name": "s",
+              "type": "bytes32"
+            }
+          ],
+          "name": "ECDSAInvalidSignatureS",
+          "type": "error"
         },
         {
-          "indexed": false,
-          "internalType": "string",
-          "name": "sellerID",
-          "type": "string"
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "resourceID",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "resourceName",
+              "type": "string"
+            }
+          ],
+          "name": "ResourceRegistered",
+          "type": "event"
         },
         {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "quantity",
-          "type": "uint256"
-        }
-      ],
-      "name": "TradeCancelled",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "tradeID",
-          "type": "uint256"
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "tradeID",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "seller",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "sellerID",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "quantity",
+              "type": "uint256"
+            }
+          ],
+          "name": "TradeCancelled",
+          "type": "event"
         },
         {
-          "indexed": false,
-          "internalType": "address",
-          "name": "buyer",
-          "type": "address"
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "tradeID",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "buyer",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "buyerID",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "quantity",
+              "type": "uint256"
+            }
+          ],
+          "name": "TradeCompleted",
+          "type": "event"
         },
         {
-          "indexed": false,
-          "internalType": "string",
-          "name": "buyerID",
-          "type": "string"
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "tradeID",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "seller",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "resourceID",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "price",
+              "type": "uint256"
+            }
+          ],
+          "name": "TradeCreated",
+          "type": "event"
         },
         {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "quantity",
-          "type": "uint256"
-        }
-      ],
-      "name": "TradeCompleted",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "tradeID",
-          "type": "uint256"
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "_tradeID",
+              "type": "uint256"
+            },
+            {
+              "internalType": "string",
+              "name": "_buyerID",
+              "type": "string"
+            },
+            {
+              "internalType": "bytes",
+              "name": "_signature",
+              "type": "bytes"
+            }
+          ],
+          "name": "buyTrade",
+          "outputs": [],
+          "stateMutability": "payable",
+          "type": "function"
         },
         {
-          "indexed": false,
-          "internalType": "address",
-          "name": "seller",
-          "type": "address"
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "_tradeID",
+              "type": "uint256"
+            }
+          ],
+          "name": "cancelTrade",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
         },
         {
-          "indexed": false,
-          "internalType": "string",
-          "name": "resourceID",
-          "type": "string"
+          "inputs": [
+            {
+              "internalType": "string",
+              "name": "_resourceID",
+              "type": "string"
+            },
+            {
+              "internalType": "uint256",
+              "name": "_quantity",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "_price",
+              "type": "uint256"
+            },
+            {
+              "internalType": "string",
+              "name": "_sellerID",
+              "type": "string"
+            },
+            {
+              "internalType": "bytes",
+              "name": "_signature",
+              "type": "bytes"
+            }
+          ],
+          "name": "createTrade",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
         },
         {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "price",
-          "type": "uint256"
-        }
-      ],
-      "name": "TradeCreated",
-      "type": "event"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "_tradeID",
-          "type": "uint256"
+          "inputs": [],
+          "name": "creator",
+          "outputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
         },
         {
-          "internalType": "string",
-          "name": "_buyerID",
-          "type": "string"
+          "inputs": [],
+          "name": "gameServerPubKey",
+          "outputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
         },
         {
-          "internalType": "bytes",
-          "name": "_signature",
-          "type": "bytes"
-        }
-      ],
-      "name": "buyTrade",
-      "outputs": [],
-      "stateMutability": "payable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "_tradeID",
-          "type": "uint256"
-        }
-      ],
-      "name": "cancelTrade",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "string",
-          "name": "_resourceID",
-          "type": "string"
+          "inputs": [],
+          "name": "getAllActiveTrades",
+          "outputs": [
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "tradeID",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "address",
+                  "name": "seller",
+                  "type": "address"
+                },
+                {
+                  "internalType": "address",
+                  "name": "buyer",
+                  "type": "address"
+                },
+                {
+                  "internalType": "string",
+                  "name": "sellerID",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "buyerID",
+                  "type": "string"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "quantity",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "price",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "string",
+                  "name": "resourceID",
+                  "type": "string"
+                },
+                {
+                  "internalType": "bool",
+                  "name": "active",
+                  "type": "bool"
+                }
+              ],
+              "internalType": "struct GameTrade.Trade[]",
+              "name": "",
+              "type": "tuple[]"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
         },
         {
-          "internalType": "uint256",
-          "name": "_quantity",
-          "type": "uint256"
+          "inputs": [],
+          "name": "getAllResources",
+          "outputs": [
+            {
+              "internalType": "string[]",
+              "name": "",
+              "type": "string[]"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
         },
         {
-          "internalType": "uint256",
-          "name": "_price",
-          "type": "uint256"
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "_tradeID",
+              "type": "uint256"
+            }
+          ],
+          "name": "getTrade",
+          "outputs": [
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "tradeID",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "address",
+                  "name": "seller",
+                  "type": "address"
+                },
+                {
+                  "internalType": "address",
+                  "name": "buyer",
+                  "type": "address"
+                },
+                {
+                  "internalType": "string",
+                  "name": "sellerID",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "buyerID",
+                  "type": "string"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "quantity",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "price",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "string",
+                  "name": "resourceID",
+                  "type": "string"
+                },
+                {
+                  "internalType": "bool",
+                  "name": "active",
+                  "type": "bool"
+                }
+              ],
+              "internalType": "struct GameTrade.Trade",
+              "name": "",
+              "type": "tuple"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
         },
         {
-          "internalType": "string",
-          "name": "_sellerID",
-          "type": "string"
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "_buyer",
+              "type": "address"
+            }
+          ],
+          "name": "getTradesByBuyer",
+          "outputs": [
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "tradeID",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "address",
+                  "name": "seller",
+                  "type": "address"
+                },
+                {
+                  "internalType": "address",
+                  "name": "buyer",
+                  "type": "address"
+                },
+                {
+                  "internalType": "string",
+                  "name": "sellerID",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "buyerID",
+                  "type": "string"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "quantity",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "price",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "string",
+                  "name": "resourceID",
+                  "type": "string"
+                },
+                {
+                  "internalType": "bool",
+                  "name": "active",
+                  "type": "bool"
+                }
+              ],
+              "internalType": "struct GameTrade.Trade[]",
+              "name": "",
+              "type": "tuple[]"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
         },
         {
-          "internalType": "bytes",
-          "name": "_signature",
-          "type": "bytes"
-        }
-      ],
-      "name": "createTrade",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "creator",
-      "outputs": [
+          "inputs": [
+            {
+              "internalType": "string",
+              "name": "_buyerID",
+              "type": "string"
+            }
+          ],
+          "name": "getTradesByBuyerID",
+          "outputs": [
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "tradeID",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "address",
+                  "name": "seller",
+                  "type": "address"
+                },
+                {
+                  "internalType": "address",
+                  "name": "buyer",
+                  "type": "address"
+                },
+                {
+                  "internalType": "string",
+                  "name": "sellerID",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "buyerID",
+                  "type": "string"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "quantity",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "price",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "string",
+                  "name": "resourceID",
+                  "type": "string"
+                },
+                {
+                  "internalType": "bool",
+                  "name": "active",
+                  "type": "bool"
+                }
+              ],
+              "internalType": "struct GameTrade.Trade[]",
+              "name": "",
+              "type": "tuple[]"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
         {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "gameServerPubKey",
-      "outputs": [
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "_seller",
+              "type": "address"
+            }
+          ],
+          "name": "getTradesBySeller",
+          "outputs": [
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "tradeID",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "address",
+                  "name": "seller",
+                  "type": "address"
+                },
+                {
+                  "internalType": "address",
+                  "name": "buyer",
+                  "type": "address"
+                },
+                {
+                  "internalType": "string",
+                  "name": "sellerID",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "buyerID",
+                  "type": "string"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "quantity",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "price",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "string",
+                  "name": "resourceID",
+                  "type": "string"
+                },
+                {
+                  "internalType": "bool",
+                  "name": "active",
+                  "type": "bool"
+                }
+              ],
+              "internalType": "struct GameTrade.Trade[]",
+              "name": "",
+              "type": "tuple[]"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
         {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "getAllActiveTrades",
-      "outputs": [
+          "inputs": [
+            {
+              "internalType": "string",
+              "name": "_sellerID",
+              "type": "string"
+            }
+          ],
+          "name": "getTradesBySellerID",
+          "outputs": [
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "tradeID",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "address",
+                  "name": "seller",
+                  "type": "address"
+                },
+                {
+                  "internalType": "address",
+                  "name": "buyer",
+                  "type": "address"
+                },
+                {
+                  "internalType": "string",
+                  "name": "sellerID",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "buyerID",
+                  "type": "string"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "quantity",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "price",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "string",
+                  "name": "resourceID",
+                  "type": "string"
+                },
+                {
+                  "internalType": "bool",
+                  "name": "active",
+                  "type": "bool"
+                }
+              ],
+              "internalType": "struct GameTrade.Trade[]",
+              "name": "",
+              "type": "tuple[]"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
         {
-          "components": [
+          "inputs": [
+            {
+              "internalType": "string",
+              "name": "_resourceID",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "_resourceName",
+              "type": "string"
+            }
+          ],
+          "name": "registerResource",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "name": "resourceList",
+          "outputs": [
+            {
+              "internalType": "string",
+              "name": "",
+              "type": "string"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "string",
+              "name": "",
+              "type": "string"
+            }
+          ],
+          "name": "resources",
+          "outputs": [
+            {
+              "internalType": "string",
+              "name": "resourceName",
+              "type": "string"
+            },
+            {
+              "internalType": "bool",
+              "name": "exists",
+              "type": "bool"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "serviceFeePercentage",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "tradeCounter",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "name": "trades",
+          "outputs": [
             {
               "internalType": "uint256",
               "name": "tradeID",
@@ -620,544 +1119,63 @@ export function ResourceRegistrationForm() {
               "type": "bool"
             }
           ],
-          "internalType": "struct GameTrade.Trade[]",
-          "name": "",
-          "type": "tuple[]"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "getAllResources",
-      "outputs": [
+          "stateMutability": "view",
+          "type": "function"
+        },
         {
-          "internalType": "string[]",
-          "name": "",
-          "type": "string[]"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "_tradeID",
-          "type": "uint256"
-        }
-      ],
-      "name": "getTrade",
-      "outputs": [
-        {
-          "components": [
-            {
-              "internalType": "uint256",
-              "name": "tradeID",
-              "type": "uint256"
-            },
-            {
-              "internalType": "address",
-              "name": "seller",
-              "type": "address"
-            },
-            {
-              "internalType": "address",
-              "name": "buyer",
-              "type": "address"
-            },
+          "inputs": [
             {
               "internalType": "string",
-              "name": "sellerID",
-              "type": "string"
-            },
-            {
-              "internalType": "string",
-              "name": "buyerID",
+              "name": "_sellerID",
               "type": "string"
             },
             {
               "internalType": "uint256",
-              "name": "quantity",
+              "name": "_quantity",
               "type": "uint256"
             },
             {
-              "internalType": "uint256",
-              "name": "price",
-              "type": "uint256"
-            },
-            {
-              "internalType": "string",
-              "name": "resourceID",
-              "type": "string"
-            },
+              "internalType": "bytes",
+              "name": "_signature",
+              "type": "bytes"
+            }
+          ],
+          "name": "verifySignature",
+          "outputs": [
             {
               "internalType": "bool",
-              "name": "active",
+              "name": "",
               "type": "bool"
             }
           ],
-          "internalType": "struct GameTrade.Trade",
-          "name": "",
-          "type": "tuple"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
+          "stateMutability": "view",
+          "type": "function"
+        },
         {
-          "internalType": "address",
-          "name": "_buyer",
-          "type": "address"
-        }
-      ],
-      "name": "getTradesByBuyer",
-      "outputs": [
-        {
-          "components": [
-            {
-              "internalType": "uint256",
-              "name": "tradeID",
-              "type": "uint256"
-            },
-            {
-              "internalType": "address",
-              "name": "seller",
-              "type": "address"
-            },
-            {
-              "internalType": "address",
-              "name": "buyer",
-              "type": "address"
-            },
+          "inputs": [
             {
               "internalType": "string",
-              "name": "sellerID",
+              "name": "_buyerID",
               "type": "string"
             },
             {
-              "internalType": "string",
-              "name": "buyerID",
-              "type": "string"
-            },
-            {
-              "internalType": "uint256",
-              "name": "quantity",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "price",
-              "type": "uint256"
-            },
-            {
-              "internalType": "string",
-              "name": "resourceID",
-              "type": "string"
-            },
+              "internalType": "bytes",
+              "name": "_signature",
+              "type": "bytes"
+            }
+          ],
+          "name": "verifySignatureBuyer",
+          "outputs": [
             {
               "internalType": "bool",
-              "name": "active",
+              "name": "",
               "type": "bool"
             }
           ],
-          "internalType": "struct GameTrade.Trade[]",
-          "name": "",
-          "type": "tuple[]"
+          "stateMutability": "view",
+          "type": "function"
         }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "string",
-          "name": "_buyerID",
-          "type": "string"
-        }
-      ],
-      "name": "getTradesByBuyerID",
-      "outputs": [
-        {
-          "components": [
-            {
-              "internalType": "uint256",
-              "name": "tradeID",
-              "type": "uint256"
-            },
-            {
-              "internalType": "address",
-              "name": "seller",
-              "type": "address"
-            },
-            {
-              "internalType": "address",
-              "name": "buyer",
-              "type": "address"
-            },
-            {
-              "internalType": "string",
-              "name": "sellerID",
-              "type": "string"
-            },
-            {
-              "internalType": "string",
-              "name": "buyerID",
-              "type": "string"
-            },
-            {
-              "internalType": "uint256",
-              "name": "quantity",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "price",
-              "type": "uint256"
-            },
-            {
-              "internalType": "string",
-              "name": "resourceID",
-              "type": "string"
-            },
-            {
-              "internalType": "bool",
-              "name": "active",
-              "type": "bool"
-            }
-          ],
-          "internalType": "struct GameTrade.Trade[]",
-          "name": "",
-          "type": "tuple[]"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "_seller",
-          "type": "address"
-        }
-      ],
-      "name": "getTradesBySeller",
-      "outputs": [
-        {
-          "components": [
-            {
-              "internalType": "uint256",
-              "name": "tradeID",
-              "type": "uint256"
-            },
-            {
-              "internalType": "address",
-              "name": "seller",
-              "type": "address"
-            },
-            {
-              "internalType": "address",
-              "name": "buyer",
-              "type": "address"
-            },
-            {
-              "internalType": "string",
-              "name": "sellerID",
-              "type": "string"
-            },
-            {
-              "internalType": "string",
-              "name": "buyerID",
-              "type": "string"
-            },
-            {
-              "internalType": "uint256",
-              "name": "quantity",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "price",
-              "type": "uint256"
-            },
-            {
-              "internalType": "string",
-              "name": "resourceID",
-              "type": "string"
-            },
-            {
-              "internalType": "bool",
-              "name": "active",
-              "type": "bool"
-            }
-          ],
-          "internalType": "struct GameTrade.Trade[]",
-          "name": "",
-          "type": "tuple[]"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "string",
-          "name": "_sellerID",
-          "type": "string"
-        }
-      ],
-      "name": "getTradesBySellerID",
-      "outputs": [
-        {
-          "components": [
-            {
-              "internalType": "uint256",
-              "name": "tradeID",
-              "type": "uint256"
-            },
-            {
-              "internalType": "address",
-              "name": "seller",
-              "type": "address"
-            },
-            {
-              "internalType": "address",
-              "name": "buyer",
-              "type": "address"
-            },
-            {
-              "internalType": "string",
-              "name": "sellerID",
-              "type": "string"
-            },
-            {
-              "internalType": "string",
-              "name": "buyerID",
-              "type": "string"
-            },
-            {
-              "internalType": "uint256",
-              "name": "quantity",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "price",
-              "type": "uint256"
-            },
-            {
-              "internalType": "string",
-              "name": "resourceID",
-              "type": "string"
-            },
-            {
-              "internalType": "bool",
-              "name": "active",
-              "type": "bool"
-            }
-          ],
-          "internalType": "struct GameTrade.Trade[]",
-          "name": "",
-          "type": "tuple[]"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "string",
-          "name": "_resourceID",
-          "type": "string"
-        },
-        {
-          "internalType": "string",
-          "name": "_resourceName",
-          "type": "string"
-        }
-      ],
-      "name": "registerResource",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "name": "resourceList",
-      "outputs": [
-        {
-          "internalType": "string",
-          "name": "",
-          "type": "string"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "string",
-          "name": "",
-          "type": "string"
-        }
-      ],
-      "name": "resources",
-      "outputs": [
-        {
-          "internalType": "string",
-          "name": "resourceName",
-          "type": "string"
-        },
-        {
-          "internalType": "bool",
-          "name": "exists",
-          "type": "bool"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "tradeCounter",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "name": "trades",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "tradeID",
-          "type": "uint256"
-        },
-        {
-          "internalType": "address",
-          "name": "seller",
-          "type": "address"
-        },
-        {
-          "internalType": "address",
-          "name": "buyer",
-          "type": "address"
-        },
-        {
-          "internalType": "string",
-          "name": "sellerID",
-          "type": "string"
-        },
-        {
-          "internalType": "string",
-          "name": "buyerID",
-          "type": "string"
-        },
-        {
-          "internalType": "uint256",
-          "name": "quantity",
-          "type": "uint256"
-        },
-        {
-          "internalType": "uint256",
-          "name": "price",
-          "type": "uint256"
-        },
-        {
-          "internalType": "string",
-          "name": "resourceID",
-          "type": "string"
-        },
-        {
-          "internalType": "bool",
-          "name": "active",
-          "type": "bool"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "string",
-          "name": "_sellerID",
-          "type": "string"
-        },
-        {
-          "internalType": "uint256",
-          "name": "_quantity",
-          "type": "uint256"
-        },
-        {
-          "internalType": "bytes",
-          "name": "_signature",
-          "type": "bytes"
-        }
-      ],
-      "name": "verifySignature",
-      "outputs": [
-        {
-          "internalType": "bool",
-          "name": "",
-          "type": "bool"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "string",
-          "name": "_buyerID",
-          "type": "string"
-        },
-        {
-          "internalType": "bytes",
-          "name": "_signature",
-          "type": "bytes"
-        }
-      ],
-      "name": "verifySignatureBuyer",
-      "outputs": [
-        {
-          "internalType": "bool",
-          "name": "",
-          "type": "bool"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    }
-  ]
+      ]
       const game_contract = new ethers.Contract(GAME_TRADE_CONTRACT, GAME_TRADE_ABI, signer);
 
 

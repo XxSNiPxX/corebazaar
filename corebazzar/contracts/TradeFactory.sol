@@ -30,7 +30,7 @@ contract TradeFactory {
         uint256 newTradeID = tradeCounter;
 
         // Deploy a new GameTrade contract
-        GameTrade newTrade = new GameTrade(_gameServerPubKey,msg.sender);
+        GameTrade newTrade = new GameTrade(_gameServerPubKey,msg.sender,_serviceFeePercentage);
 
         trades[newTradeID] = TradeInfo(
             newTradeID, // Store the generated trade ID

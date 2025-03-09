@@ -1,23 +1,21 @@
 <template>
     <div>
-
-
-    <button
-        @click="menuOpen = true"
-        style="
-            margin-top: 5px;
-            margin-left: 5px;
-            padding: 14px 24px;
-            cursor: pointer;
-            border: none;
-            border-radius: 8px;
-            background: #3a3a3a;
-            color: white;
-            font-size: 16px;
-            font-weight: bold;
-            transition: transform 0.2s, background 0.3s;">
-        Open Shop
-    </button>
+        <button
+            @click="menuOpen = true"
+            style="
+                margin-top: 5px;
+                margin-left: 5px;
+                padding: 14px 24px;
+                cursor: pointer;
+                border: none;
+                border-radius: 8px;
+                background: #3a3a3a;
+                color: white;
+                font-size: 16px;
+                font-weight: bold;
+                transition: transform 0.2s, background 0.3s;">
+            Open Shop
+        </button>
 
         <div v-if="menuOpen" class="shop-menu">
             <div class="menu-bar">
@@ -54,29 +52,34 @@
             </div>
         </div>
 
-        <div v-if="confirmDialog" class="confirmation-popup">
-            <div class="dialog-box">
-                <h2>Confirm Sale</h2>
-                <p>Item: {{ itemToSell }}</p>
-                <p>Price: {{ priceToSell }} Gold</p>
-                <p>Quantity: {{ quantityToSell }}</p>
-                <div class="buttons">
-                    <button @click="sellItem">Confirm</button>
-                    <button @click="confirmDialog = false">Cancel</button>
+        <!-- Updated confirmation dialogs -->
+        <div v-if="confirmDialog" class="modal-overlay">
+            <div class="confirmation-dialog">
+                <div class="dialog-box">
+                    <h2>Confirm Sale</h2>
+                    <p>Item: {{ itemToSell }}</p>
+                    <p>Price: {{ priceToSell }} Gold</p>
+                    <p>Quantity: {{ quantityToSell }}</p>
+                    <div class="buttons">
+                        <button @click="sellItem">Confirm</button>
+                        <button @click="confirmDialog = false">Cancel</button>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div v-if="confirmBuyDialog" class="confirmation-popup">
-            <div class="dialog-box">
-                <h2>Confirm Purchase</h2>
-                <p>Item: {{ selectedTrade[7] }}</p>
-                <p>Seller: {{ selectedTrade[3] }}</p>
-                <p>Quantity: {{ selectedTrade[5] }}</p>
-                <p>Price: {{ selectedTrade[6] }} tCore</p>
-                <div class="buttons">
-                    <button @click="buyItem">Confirm</button>
-                    <button @click="confirmBuyDialog = false">Cancel</button>
+        <div v-if="confirmBuyDialog" class="modal-overlay">
+            <div class="confirmation-dialog">
+                <div class="dialog-box">
+                    <h2>Confirm Purchase</h2>
+                    <p>Item: {{ selectedTrade[7] }}</p>
+                    <p>Seller: {{ selectedTrade[3] }}</p>
+                    <p>Quantity: {{ selectedTrade[5] }}</p>
+                    <p>Price: {{ selectedTrade[6] }} tCore</p>
+                    <div class="buttons">
+                        <button @click="buyItem">Confirm</button>
+                        <button @click="confirmBuyDialog = false">Cancel</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -108,13 +111,13 @@ export default {
         };
     },
     mounted() {
-   this.obsCurrentPlayer = this.rpgCurrentPlayer.subscribe(({ object }) => {
-     this.gold = object.gold;
-   });
- },
- unmounted() {
-   this.obsCurrentPlayer.unsubscribe();
- },
+       this.obsCurrentPlayer = this.rpgCurrentPlayer.subscribe(({ object }) => {
+         this.gold = object.gold;
+       });
+     },
+     unmounted() {
+       this.obsCurrentPlayer.unsubscribe();
+     },
     methods: {
         validateNumber() {
             this.quantityToSell = this.quantityToSell.replace(/\D/g, '');
@@ -160,7 +163,6 @@ export default {
 };
 </script>
 
-
 <style>
 .name-screen {
     position: absolute;
@@ -171,51 +173,80 @@ export default {
     justify-content: center;
     align-items: center;
 }
-.dialog-box {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
-    width: 300px;
-    text-align: center;
-    z-index:1000;
+
+/* Modal overlay to block background interactions */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
 }
+
+.confirmation-dialog {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2001;
+    pointer-events: auto;
+}
+
+.dialog-box {
+    background-color: rgba(80, 80, 80, 0.9);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+    width: 350px;
+    text-align: center;
+    color: white;
+    font-size: 18px;
+}
+
 .dialog-box h2 {
     margin: 0 0 15px;
+    font-size: 22px;
+    font-weight: bold;
 }
-.dialog-box input {
-    width: 90%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+
+.dialog-box p {
+    font-size: 16px;
+    margin-bottom: 15px;
 }
+
 .buttons {
     display: flex;
     justify-content: space-between;
+    margin-top: 10px;
 }
+
 .dialog-box button {
-    background-color: #007BFF;
-    color: #fff;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
+    background-color: rgba(100, 100, 100, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: white;
+    padding: 10px 20px;
+    font-size: 18px;
     cursor: pointer;
+    border-radius: 6px;
     transition: background-color 0.3s;
-    margin: 5px;
 }
+
 .dialog-box button:hover {
-    background-color: #0056b3;
+    background-color: rgba(120, 120, 120, 0.9);
 }
+
 .shop-menu {
     position: absolute;
     top: 10;
     left: 50%;
     transform: translateX(-50%);
-    width: 70%; /* Reduced width */
-    height: 70%; /* Reduced width */
-
-    background: rgba(50, 50, 50, 0.95); /* Grey background */
+    width: 70%;
+    height: 70%;
+    background: rgba(50, 50, 50, 0.95);
     z-index: 1000;
     padding: 20px;
     color: white;
@@ -226,10 +257,10 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(80, 80, 80, 0.9); /* Darker grey */
+    background: rgba(80, 80, 80, 0.9);
     padding: 15px;
     border-radius: 8px;
-    font-size: 20px; /* Slightly larger text */
+    font-size: 20px;
 }
 
 .tabs {
@@ -237,26 +268,26 @@ export default {
 }
 
 .tab {
-    padding: 12px 25px; /* Bigger buttons */
+    padding: 12px 25px;
     cursor: pointer;
-    font-size: 18px; /* Slightly larger text */
+    font-size: 18px;
     font-weight: bold;
     border-right: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .tab.active {
-    background-color: rgba(100, 100, 100, 0.8); /* Highlighted grey */
+    background-color: rgba(100, 100, 100, 0.8);
 }
 
 .gold-display {
     padding: 12px 20px;
-    font-size: 20px; /* Bigger gold display */
+    font-size: 20px;
     font-weight: bold;
 }
 
 .content {
     padding: 15px;
-    max-height: 350px; /* Slightly larger content box */
+    max-height: 350px;
     overflow-y: auto;
 }
 
@@ -265,7 +296,7 @@ export default {
     justify-content: space-between;
     align-items: center;
     padding: 10px 0;
-    font-size: 18px; /* Larger item text */
+    font-size: 18px;
 }
 
 .item-name, .item-seller, .item-quantity, .item-price {
@@ -273,16 +304,16 @@ export default {
 }
 
 .shop-button {
-    background-color: rgba(100, 100, 100, 0.9); /* Grey button */
+    background-color: rgba(100, 100, 100, 0.9);
     border: 1px solid rgba(255, 255, 255, 0.5);
     color: white;
-    padding: 10px 20px; /* Bigger buttons */
+    padding: 10px 20px;
     font-size: 18px;
     cursor: pointer;
 }
 
 .shop-button:hover {
-    background-color: rgba(120, 120, 120, 0.9); /* Lighter grey hover */
+    background-color: rgba(120, 120, 120, 0.9);
 }
 
 .sell-form {
@@ -291,11 +322,18 @@ export default {
     gap: 10px;
     margin-top: 10px;
 }
+
 .input {
     background-color: rgba(40, 60, 100, 0.8);
     border: 1px solid rgba(255, 255, 255, 0.3);
     color: white;
     padding: 8px;
     margin-bottom: 5px;
+}
+
+.error {
+    color: #ff6b6b;
+    font-size: 14px;
+    margin-top: 5px;
 }
 </style>

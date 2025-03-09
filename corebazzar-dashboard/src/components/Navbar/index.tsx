@@ -39,7 +39,7 @@ const Navbar = ({ className }: Props) => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex gap-6">
-          {["/", "/features", "/docs", "/use-cases"].map((path) => (
+          {["/", "/integrate", "/docs", "/use-cases"].map((path) => (
             <Link
               key={path}
               to={path}

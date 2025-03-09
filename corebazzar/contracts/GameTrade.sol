@@ -25,6 +25,7 @@ contract GameTrade {
 
     address public gameServerPubKey;
     address public creator;
+    uint256 public serviceFeePercentage;
     uint256 public tradeCounter = 0;
     mapping(string => Resource) public resources;
     mapping(uint256 => Trade) public trades;
@@ -35,9 +36,10 @@ contract GameTrade {
     event TradeCompleted(uint256 tradeID, address buyer,string buyerID,uint256 quantity);
     event TradeCancelled(uint256 tradeID, address seller,string sellerID,uint256 quantity);
 
-    constructor(address _gameServerPubKey, address _creator) {
+    constructor(address _gameServerPubKey, address _creator,uint256 _serviceFeePercentage) {
         gameServerPubKey = _gameServerPubKey;
         creator = _creator;
+        serviceFeePercentage=_serviceFeePercentage;
     }
 
     function registerResource(string memory _resourceID, string memory _resourceName) public {
@@ -82,13 +84,21 @@ contract GameTrade {
         require(tr.seller != msg.sender, "Seller cannot buy own listing");
         require(verifySignatureBuyer(_buyerID, _signature), "Invalid signature");
 
+        // Calculate service fee
+        uint256 serviceFee = (msg.value * (serviceFeePercentage * 100)) / 10_000;
+
+        // Transfer funds
+        payable(tr.seller).transfer(msg.value - serviceFee); // Transfer amount after fee deduction
+        payable(creator).transfer(serviceFee); // Transfer service fee to game developer
+
+        // Update trade details
         tr.buyer = msg.sender;
         tr.buyerID = _buyerID;
         tr.active = false;
-        payable(tr.seller).transfer(msg.value);
 
-        emit TradeCompleted(_tradeID, msg.sender,_buyerID,tr.quantity);
+        emit TradeCompleted(_tradeID, msg.sender, _buyerID, tr.quantity);
     }
+
 
     function cancelTrade(uint256 _tradeID) public {
         Trade storage tr = trades[_tradeID];

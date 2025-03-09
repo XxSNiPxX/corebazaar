@@ -12,275 +12,275 @@ import { AlertCircle } from "lucide-react"
 import { Alert, AlertDescription } from "~/components/TypescriptUI/alert"
 
 // Smart Contract Details
-const CONTRACT_ADDRESS = "0x1EB42a77f2c9394025c54F5922A7E9e6F28Ce0cd"
+const CONTRACT_ADDRESS = "0xd6b6B08BDB261fA8aBF785CeE513c5CA17592994"
 const ABI = [
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "tradeID",
-          "type": "uint256"
-        },
-        {
-          "indexed": false,
-          "internalType": "address",
-          "name": "tradeContract",
-          "type": "address"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "serviceFeePercentage",
-          "type": "uint256"
-        }
-      ],
-      "name": "GameTradeCreated",
-      "type": "event"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "name": "allTrades",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "_gameServerPubKey",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "_serviceFeePercentage",
-          "type": "uint256"
-        }
-      ],
-      "name": "createGameTrade",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "getAllGameTradeDetails",
-      "outputs": [
-        {
-          "components": [
-            {
-              "internalType": "uint256",
-              "name": "tradeID",
-              "type": "uint256"
-            },
-            {
-              "internalType": "address",
-              "name": "gameServerPubKey",
-              "type": "address"
-            },
-            {
-              "internalType": "address",
-              "name": "gameDeveloper",
-              "type": "address"
-            },
-            {
-              "internalType": "address",
-              "name": "tradeContract",
-              "type": "address"
-            },
-            {
-              "internalType": "uint256",
-              "name": "serviceFeePercentage",
-              "type": "uint256"
-            },
-            {
-              "internalType": "bool",
-              "name": "exists",
-              "type": "bool"
-            }
-          ],
-          "internalType": "struct TradeFactory.TradeInfo[]",
-          "name": "",
-          "type": "tuple[]"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "getAllGameTrades",
-      "outputs": [
-        {
-          "internalType": "address[]",
-          "name": "",
-          "type": "address[]"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "_tradeID",
-          "type": "uint256"
-        }
-      ],
-      "name": "getGameTradeByID",
-      "outputs": [
-        {
-          "components": [
-            {
-              "internalType": "uint256",
-              "name": "tradeID",
-              "type": "uint256"
-            },
-            {
-              "internalType": "address",
-              "name": "gameServerPubKey",
-              "type": "address"
-            },
-            {
-              "internalType": "address",
-              "name": "gameDeveloper",
-              "type": "address"
-            },
-            {
-              "internalType": "address",
-              "name": "tradeContract",
-              "type": "address"
-            },
-            {
-              "internalType": "uint256",
-              "name": "serviceFeePercentage",
-              "type": "uint256"
-            },
-            {
-              "internalType": "bool",
-              "name": "exists",
-              "type": "bool"
-            }
-          ],
-          "internalType": "struct TradeFactory.TradeInfo",
-          "name": "",
-          "type": "tuple"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "_creator",
-          "type": "address"
-        }
-      ],
-      "name": "getGameTradesByCreator",
-      "outputs": [
-        {
-          "internalType": "address[]",
-          "name": "",
-          "type": "address[]"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "_tradeID",
-          "type": "uint256"
-        }
-      ],
-      "name": "getServiceFeePercentage",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "tradeCounter",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "name": "trades",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "tradeID",
-          "type": "uint256"
-        },
-        {
-          "internalType": "address",
-          "name": "gameServerPubKey",
-          "type": "address"
-        },
-        {
-          "internalType": "address",
-          "name": "gameDeveloper",
-          "type": "address"
-        },
-        {
-          "internalType": "address",
-          "name": "tradeContract",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "serviceFeePercentage",
-          "type": "uint256"
-        },
-        {
-          "internalType": "bool",
-          "name": "exists",
-          "type": "bool"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    }
-  ]
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "tradeID",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "tradeContract",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "serviceFeePercentage",
+        "type": "uint256"
+      }
+    ],
+    "name": "GameTradeCreated",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "allTrades",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_gameServerPubKey",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_serviceFeePercentage",
+        "type": "uint256"
+      }
+    ],
+    "name": "createGameTrade",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getAllGameTradeDetails",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "tradeID",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "gameServerPubKey",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "gameDeveloper",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "tradeContract",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "serviceFeePercentage",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "exists",
+            "type": "bool"
+          }
+        ],
+        "internalType": "struct TradeFactory.TradeInfo[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getAllGameTrades",
+    "outputs": [
+      {
+        "internalType": "address[]",
+        "name": "",
+        "type": "address[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_tradeID",
+        "type": "uint256"
+      }
+    ],
+    "name": "getGameTradeByID",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "tradeID",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "gameServerPubKey",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "gameDeveloper",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "tradeContract",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "serviceFeePercentage",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "exists",
+            "type": "bool"
+          }
+        ],
+        "internalType": "struct TradeFactory.TradeInfo",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_creator",
+        "type": "address"
+      }
+    ],
+    "name": "getGameTradesByCreator",
+    "outputs": [
+      {
+        "internalType": "address[]",
+        "name": "",
+        "type": "address[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_tradeID",
+        "type": "uint256"
+      }
+    ],
+    "name": "getServiceFeePercentage",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "tradeCounter",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "trades",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "tradeID",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "gameServerPubKey",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "gameDeveloper",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "tradeContract",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "serviceFeePercentage",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bool",
+        "name": "exists",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
+]
 
 export function GameServerForm() {
   const [gameServerPubKey, setGameServerPubKey] = useState("")

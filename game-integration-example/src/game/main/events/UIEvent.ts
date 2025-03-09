@@ -1,4 +1,4 @@
-import { RpgEvent, EventData, RpgPlayer, Move } from '@rpgjs/server'
+import { RpgEvent, EventData, RpgPlayer, Move,EventMode } from '@rpgjs/server'
 import { ethers } from "ethers"; // Import ethers.js
 
 const CONTRACT_ADDRESS = "0xd6b6B08BDB261fA8aBF785CeE513c5CA17592994"
@@ -1132,143 +1132,138 @@ const GAME_TRADE_ABI=[
 ]
 
   @EventData({
-      name: 'EV-1'
+      name: 'SD',
+          mode: EventMode.Scenario,
   })
   export default class UIEvent extends RpgEvent {
 
 
       async onChanges(player: RpgPlayer) {
         console.log("ON CHAIN CALLED",player.id)
-                const now = Date.now();
-          const RPC_URL = "https://rpc.test2.btcs.network";
-          const provider = new ethers.JsonRpcProvider(RPC_URL);
-          const wallet = new ethers.Wallet(PRIVATE_KEY, provider);
-          const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, wallet);
-          let allTrades, allResources;
+        const isOpened = player.getVariable('GOLD')
+        console.log(isOpened)
+        if (!player.getVariable('GOLD')) {
+          player.setVariable('GOLD', true)
+          console.log("inside")
+          const now = Date.now();
+        const RPC_URL = "https://rpc.test2.btcs.network";
+        const provider = new ethers.JsonRpcProvider(RPC_URL);
+        const wallet = new ethers.Wallet(PRIVATE_KEY, provider);
+        const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, wallet);
+        let allTrades, allResources;
 
 
-          try {
-              const tradeInfo = await contract.getAllGameTrades();
-              console.log(tradeInfo[tradeInfo.length - 1], "HEREE");
-              const GAME_TRADE_CONTRACT = tradeInfo[tradeInfo.length - 1];
-              const contract_game = new ethers.Contract(GAME_TRADE_CONTRACT, GAME_TRADE_ABI, wallet);
-              allTrades = await contract_game.getAllActiveTrades();
-              allResources = await contract_game.getAllResources();
-              console.log(allTrades, allResources);
-              console.log(player.gold);
-          } catch (error) {
-              console.error("Error fetching trade info:", error);
-          }
+        try {
+            const tradeInfo = await contract.getAllGameTrades();
+            console.log(tradeInfo[tradeInfo.length - 1], "HEREE");
+            const GAME_TRADE_CONTRACT = tradeInfo[tradeInfo.length - 1];
+            const contract_game = new ethers.Contract(GAME_TRADE_CONTRACT, GAME_TRADE_ABI, wallet);
+            allTrades = await contract_game.getAllActiveTrades();
+            allResources = await contract_game.getAllResources();
 
-          try {
-              const tradeInfo = await contract.getAllGameTrades();
-              console.log(tradeInfo[tradeInfo.length - 1], "HEREE");
-              const GAME_TRADE_CONTRACT = tradeInfo[tradeInfo.length - 1];
-              const contract_game = new ethers.Contract(GAME_TRADE_CONTRACT, GAME_TRADE_ABI, wallet);
-              contract_game.on("TradeCompleted", (tradeID, buyer, buyerID, quantity) => {
-                  console.log("🔥 Trade Completed!");
-                  console.log(`✅ Trade ID: ${tradeID}`);
-                  console.log(`👤 Buyer: ${buyer}`);
-                  console.log(`👤 Buyer ID: ${buyerID}`);
-                  console.log(player.id);
-                  if (buyerID == player.id) {
-                    console.log("heree")
+        } catch (error) {
+            console.error("Error fetching trade info:", error);
+        }
 
-                   player.gold += Number(quantity);
-                   player.save()
-                   console.log(`💰 Gold added: ${quantity} to ${player.id}`);
-               }
-              });
-          } catch (error) {
-              console.error("Error fetching trade info:", error);
-          }
-          // try {
-          //     const tradeInfo = await contract.getAllGameTrades();
-          //     console.log(tradeInfo[tradeInfo.length - 1], "HEREE");
-          //     const GAME_TRADE_CONTRACT = tradeInfo[tradeInfo.length - 1];
-          //     const contract_game = new ethers.Contract(GAME_TRADE_CONTRACT, GAME_TRADE_ABI, wallet);
-          //     contract_game.on("TradeCompleted", (tradeID, buyer, buyerID, quantity) => {
-          //         console.log("🔥 Trade Completed!");
-          //         console.log(`✅ Trade ID: ${tradeID}`);
-          //         console.log(`👤 Buyer: ${buyer}`);
-          //         console.log(`👤 Buyer ID: ${buyerID}`);
-          //         console.log(player.id);
-          //         if (buyerID == player.id) {
-          //             console.log(quantity);
-          //             console.log(Number(quantity))
-          //             player.gold += Number(quantity);
-          //         }
-          //     });
-          // } catch (error) {
-          //     console.error("Error fetching trade info:", error);
-          // }
+        try {
+            const tradeInfo = await contract.getAllGameTrades();
+            const GAME_TRADE_CONTRACT = tradeInfo[tradeInfo.length - 1];
+            const contract_game = new ethers.Contract(GAME_TRADE_CONTRACT, GAME_TRADE_ABI, wallet);
+            contract_game.on("TradeCompleted", (tradeID, buyer, buyerID, quantity) => {
 
-          const convertTradesToEth = (trades) => {
-              return trades.map(trade => {
-                  if (trade.length >= 6) {
-                      console.log(trade[6], "YOOOOOO");
-                      const weiToEthString = (wei) => (Number(wei) / 1e18).toString();
-                      return [
-                          Number(trade[0]),
-                          ...trade.slice(1, 5),
-                          Number(trade[5]),
-                          weiToEthString(trade[6]),
-                          ...trade.slice(7)
-                      ];
-                  }
-                  return trade;
-              });
-          };
+                if (buyerID == player.id) {
 
-          const convertedTrades = convertTradesToEth(allTrades);
-          console.log(convertedTrades);
+                 player.gold += Number(quantity);
+                 player.save()
+                 console.log(`💰 Gold added: ${quantity} to ${player.id}`);
+             }
+            });
+        } catch (error) {
+            console.error("Error fetching trade info:", error);
+        }
+        // try {
+        //     const tradeInfo = await contract.getAllGameTrades();
+        //     console.log(tradeInfo[tradeInfo.length - 1], "HEREE");
+        //     const GAME_TRADE_CONTRACT = tradeInfo[tradeInfo.length - 1];
+        //     const contract_game = new ethers.Contract(GAME_TRADE_CONTRACT, GAME_TRADE_ABI, wallet);
+        //     contract_game.on("TradeCompleted", (tradeID, buyer, buyerID, quantity) => {
+        //         console.log("🔥 Trade Completed!");
+        //         console.log(`✅ Trade ID: ${tradeID}`);
+        //         console.log(`👤 Buyer: ${buyer}`);
+        //         console.log(`👤 Buyer ID: ${buyerID}`);
+        //         console.log(player.id);
+        //         if (buyerID == player.id) {
+        //             console.log(quantity);
+        //             console.log(Number(quantity))
+        //             player.gold += Number(quantity);
+        //         }
+        //     });
+        // } catch (error) {
+        //     console.error("Error fetching trade info:", error);
+        // }
 
-          const guiNameScreen = player.gui('NameScreenGui');
-          guiNameScreen.open({
-              allTrades: convertedTrades,
-              allResources: allResources
-          });
+        const convertTradesToEth = (trades) => {
+            return trades.map(trade => {
+                if (trade.length >= 6) {
 
-          guiNameScreen.on('sellItem', async ({ item_name, item_price, quantity }) => {
-              console.log(item_name, item_price, quantity);
-              const provider = new ethers.JsonRpcProvider(RPC_URL);
-              const wallet = new ethers.Wallet(PRIVATE_KEY, provider);
+                    const weiToEthString = (wei) => (Number(wei) / 1e18).toString();
+                    return [
+                        Number(trade[0]),
+                        ...trade.slice(1, 5),
+                        Number(trade[5]),
+                        weiToEthString(trade[6]),
+                        ...trade.slice(7)
+                    ];
+                }
+                return trade;
+            });
+        };
 
-              const signMessage = async (signer, sellerID, quantity) => {
-                  const messageHash = ethers.solidityPackedKeccak256(
-                      ["string", "uint256"],
-                      [sellerID, quantity]
-                  );
-                  return await signer.signMessage(ethers.getBytes(messageHash));
-              };
-              let player_gold=player.gold
-              if (quantity < player_gold) {
-                  console.log(quantity);
+        const convertedTrades = convertTradesToEth(allTrades);
 
-                  const signature = await signMessage(wallet, player.id, quantity);
-                  console.log(signature);
-                  player.gold -= quantity;
-                  console.log(`Updated gold: ${player.gold}`);
+        const guiNameScreen = player.gui('NameScreenGui');
+        guiNameScreen.open({
+            allTrades: convertedTrades,
+            allResources: allResources
+        });
+
+        guiNameScreen.on('sellItem', async ({ item_name, item_price, quantity }) => {
+            const provider = new ethers.JsonRpcProvider(RPC_URL);
+            const wallet = new ethers.Wallet(PRIVATE_KEY, provider);
+
+            const signMessage = async (signer, sellerID, quantity) => {
+                const messageHash = ethers.solidityPackedKeccak256(
+                    ["string", "uint256"],
+                    [sellerID, quantity]
+                );
+                return await signer.signMessage(ethers.getBytes(messageHash));
+            };
+            let player_gold=player.gold
+            if (quantity < player_gold) {
+
+                const signature = await signMessage(wallet, player.id, quantity);
+                player.gold -= quantity;
+                console.log(`Updated gold: ${player.gold}`);
 player.save(); // Ensure the backend persists the update
-                  player.emit("SendSignature", { item_name, quantity, item_price, sellerid: player.id, signature });
-              }
-          });
+                player.emit("SendSignature", { item_name, quantity, item_price, sellerid: player.id, signature });
+            }
+        });
 
-          guiNameScreen.on('buyItem', async ({ item_name, item_price, quantity, seller, trade_id }) => {
-              console.log(item_name, item_price, quantity, seller, trade_id);
-              const provider = new ethers.JsonRpcProvider(RPC_URL);
-              const wallet = new ethers.Wallet(PRIVATE_KEY, provider);
+        guiNameScreen.on('buyItem', async ({ item_name, item_price, quantity, seller, trade_id }) => {
+            const provider = new ethers.JsonRpcProvider(RPC_URL);
+            const wallet = new ethers.Wallet(PRIVATE_KEY, provider);
 
-              const signMessageBuyer = async (signer, buyerID) => {
-                  const messageHash = ethers.solidityPackedKeccak256(["string"], [buyerID]);
-                  return await signer.signMessage(ethers.getBytes(messageHash));
-              };
+            const signMessageBuyer = async (signer, buyerID) => {
+                const messageHash = ethers.solidityPackedKeccak256(["string"], [buyerID]);
+                return await signer.signMessage(ethers.getBytes(messageHash));
+            };
 
-              if (item_name === 'ingame-gold') {
-                  const signature = await signMessageBuyer(wallet, player.id);
-                  console.log(signature);
-                  player.emit("SendBuySignature", { item_name, quantity, item_price, sellerid: seller, buyerid: player.id, trade_id, signature });
-              }
-          });
+            if (item_name === 'ingame-gold') {
+                const signature = await signMessageBuyer(wallet, player.id);
+                player.emit("SendBuySignature", { item_name, quantity, item_price, sellerid: seller, buyerid: player.id, trade_id, signature });
+            }
+        });
+        }
+
       }
   }
